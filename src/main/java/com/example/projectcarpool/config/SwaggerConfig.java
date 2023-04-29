@@ -1,11 +1,11 @@
 package com.example.projectcarpool.config;
 
 import com.fasterxml.classmate.TypeResolver;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Pageable;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -17,6 +17,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.List;
 
+@Configuration
 public class SwaggerConfig {
     TypeResolver typeResolver = new TypeResolver();
 
@@ -30,7 +31,9 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.example.projectcarpool")) // api 스펙이 작성되어 있는 패키지 (controller)
                 .paths(PathSelectors.any()) // apis 에 위치하는 API 중 특정 path 를 선택
                 .build();
+
     }
+
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
@@ -42,7 +45,6 @@ public class SwaggerConfig {
 
     @Getter
     @Setter
-    @ApiModel
     static class Page {
         @ApiModelProperty(value = "페이지 번호(0..N)")
         private Integer page;
