@@ -65,12 +65,17 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
         User user = new User();
 
+        if(oAuth2UserInfo.getName().contains("@daejin")){
+            user.setEmail(oAuth2UserInfo.getEmail());
+        }
+        else{
+            throw new OAuth2AuthenticationProcessingException("This is not the Daejin University email format.");
+        }
         user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
         user.setProviderId(oAuth2UserInfo.getId());
         user.setName(oAuth2UserInfo.getName());
-        user.setEmail(oAuth2UserInfo.getEmail());
-
         user.setImageUrl(oAuth2UserInfo.getImageUrl());
+
         return userRepository.save(user);
     }
 
