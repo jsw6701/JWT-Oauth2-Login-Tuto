@@ -1,2 +1,3 @@
-# Project-Carpool
-셔틀버스가 많이 사라진 학교에 숨을 불어 넣어 줄 카풀 프로젝트
+# JWT 방식 Oauth2 소셜 로그인 (구글만 세션ID, pwd 연결해놈)
+
+SWAGGER 연동까지(permitAll, ignore처리까지)
